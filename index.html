@@ -238,10 +238,10 @@
             $temp.remove();
         }
 
-        function copied_dialog(t) {
+        function copied_dialog(t = 'none') {
             $('<div>').addClass('dialog').appendTo($('body')).append([
                 $('<p>').text('Results Copied to Clipboard.'),
-                $('<br>'),
+                $('<hr>'),
                 $('<pre>').append([
                     $('<code>').text(t)
                 ])
