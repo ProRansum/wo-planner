@@ -158,6 +158,9 @@
 	</div>
 
     <style media="screen">
+        .ui-tabs-tab > a {
+            width: 100%;
+        }
         .datepicker { padding: unset; }
         .workouts {
             width: 100%;
@@ -268,7 +271,7 @@
                         return `${ text } [${ state }] ${ (state == "COMPLETED" || amount > 0) ? '(' + amount + ')' : '' }`
                     });
 
-                    copy(results.get().join('\n'));
+                    copy(`Date: ${ $(this).parent().prevAll('.datepicker').val() }\n${ results.get().join('\n') }`);
                 })
             ]);
 
