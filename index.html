@@ -151,8 +151,8 @@
 		</div>
 
 		<div id="tabs-7">
-			<ul class="workouts">
-				<li><label><input type="checkbox">Rest Day</label></li>
+			<ul class="workouts rest-day">
+				<li>Rest Day</li>
 			</ul>
 		</div>
 	</div>
@@ -271,16 +271,12 @@
             	}]
             });
 
-            console.log(prompt);
-
-            console.log(prompt.parent().find('.ui-dialog-titlebar-close').click(function() {
+            return prompt.parent().find('.ui-dialog-titlebar-close').click(function() {
                 $(this).parents().eq(1)
-            }))
-
-            return
+            });
         }
 
-        $('.workouts').each(function(workouts) {
+        $('.workouts:not(.rest-day)').each(function(workouts) {
             let $workouts = $(this);
 
             $workouts.find('.workout').each(function(workout) {
