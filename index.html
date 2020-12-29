@@ -158,6 +158,9 @@
 	</div>
 
     <style media="screen">
+        .no-close .ui-dialog-titlebar-close {
+          display: none;
+        }
         .ui-tabs-tab > a {
             width: 100%;
         }
@@ -239,23 +242,39 @@
         }
 
         function copied_dialog(t = 'none') {
-            $('<div>').addClass('dialog').appendTo($('body')).append([
+            var prompt = $('div.dialog');
+            if(!prompt.length) {
+                prompt = $('<div>').addClass('dialog').appendTo($('body'));
+            }
+
+            prompt.html([
                 $('<p>').text('Results Copied to Clipboard.'),
                 $('<hr>'),
                 $('<pre>').append([
                     $('<code>').text(t)
                 ])
-            ]).dialog({
+            ]);
+
+            prompt.dialog({
             	dialogClass: "no-close",
                 title: "Results Copied!",
                 width: '80%',
             	buttons: [{
             		text: "OK",
-            		click: function() {
-            			$(this).dialog("close").remove();
+            		click: function(btn) {
+            			$(this).dialog("close");
+                        $(this).remove();
             		}
             	}]
             });
+
+            console.log(prompt);
+
+            console.log(prompt.parent().find('.ui-dialog-titlebar-close').click(function() {
+                $(this).parents().eq(1)
+            }))
+
+            return
         }
 
         $('.workouts').each(function(workouts) {
