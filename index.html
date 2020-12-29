@@ -229,7 +229,7 @@
 
     <script type="text/javascript">
         function copy(t) {
-            var $temp = $("<textarea>").insertAfter($("body").children().last()).val(t);
+            var $temp = $("<textarea>").appendTo($("body")).val(t);
 
             $temp.select();
             $temp[0].setSelectionRange(0, 99999);
