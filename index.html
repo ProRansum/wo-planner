@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Workouts</title>
+
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<style media="screen">
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	table {
+		font-size: 1em;
+	}
+	.ui-draggable,
+	.ui-droppable {
+		background-position: top;
+	}
+    fieldset {
+      border: 0;
+    }
+    label {
+      display: block;
+
+    }
+    .overflow {
+      height: 200px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+        $( ".datepicker" ).datepicker().each(function() {
+            $(this).datepicker("setDate", new Date().toLocaleDateString())
+        })
+    } );
+</script>
+
+<body>
+	<div id="tabs">
+        <ul>
+        	<li><a href="#tabs-1">Day 1: Legs</a></li>
+        	<li><a href="#tabs-2">Day 2: Back</a></li>
+        	<li><a href="#tabs-3">Day 3: Shoulders</a></li>
+        	<li><a href="#tabs-4">Day 4: Arms/Abs</a></li>
+        	<li><a href="#tabs-5">Day 5: Legs</a></li>
+        	<li><a href="#tabs-6">Day 6: Chest</a></li>
+        	<li><a href="#tabs-7">Day 7: Rest</a></li>
+        </ul>
+
+		<div id="tabs-1">
+            <input type="text" class="datepicker">
+
+			<ul class="workouts">
+				<li class="workout"><label><input type="checkbox" duration="50">Run (outside or on a treadmill) - (<i>~<b>30</b>-<b>50</b>mins</i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Barbell Walking Lunge (<i>~<b>25 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Leg Press (<i>~<b>25 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="3">Leg Extensions (<i>~<b>20 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Barbell Squats (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Hack Squats (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Romanian Deadlift (<i>~<b>10 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="3">Seated Leg Curls (<i>~<b>20 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Thigh Abductor 4 set (<i>~<b>12 reps</b></i>)</label></li>
+			</ul>
+		</div>
+
+		<div id="tabs-2">
+            <input type="text" class="datepicker">
+
+			<ul class="workouts">
+				<li class="workout"><label><input type="checkbox" duration="50">Run (outside or on a treadmill) - (<i>~<b>30</b>-<b>50</b>mins</i>)</label></li>
+                <li class="workout"><label><input type="checkbox" sets="4">Wide-Grip Lat Pulldown (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Bent Over Barbell Row (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">One Arm Dumbbell Row (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="3">Barbell Deadlift (<i>~<b>10 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Pull-Ups 3 sets</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Dumbbell Shrug (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Inverted Row 3 sets</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Hyperextension (<i>~<b>12 reps</b></i>)</label></li>
+			</ul>
+		</div>
+
+		<div id="tabs-3">
+            <input type="text" class="datepicker">
+
+			<ul class="workouts">
+				<li class="workout"><label><input type="checkbox" duration="50">Run (outside or on a treadmill) - (<i>~<b>30</b>-<b>50</b>mins</i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Dumbbell Shoulder Press (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Standing Military Press (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Front Dumbbell Raise (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Side Lateral Raise (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Reverse Machine Flyes (<i>~<b>15 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Seated Bent Over Rear Delt Raise (<i>~<b>12 reps</b></i>)</label></li>
+			</ul>
+
+		</div>
+
+		<div id="tabs-4">
+            <input type="text" class="datepicker">
+
+			<ul class="workouts">
+				<li class="workout"><label><input type="checkbox" duration="50">Run (outside or on a treadmill) - (<i>~<b>30</b>-<b>50</b>mins</i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Dumbbell Bicep Curl (<i>~<b>15 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Hammer Curls (<i>~<b>15 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Spider Curl (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Triceps Pushdown (<i>~<b>15 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="3">Overhead Triceps (<i>~<b>15 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Hanging Leg Raise (<i>~<b>20 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Rope Crunch (<i>~<b>20 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Russian Twist (<i>~<b>20 reps</b></i>)</label></li>
+			</ul>
+
+		</div>
+
+		<div id="tabs-5">
+            <input type="text" class="datepicker">
+
+			<ul class="workouts">
+				<li class="workout"><label><input type="checkbox" duration="50">Run (outside or on a treadmill) - (<i>~<b>30</b>-<b>50</b>mins</i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Barbell Walking Lunge (<i>~<b>25 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Leg Press (<i>~<b>25 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="3">Leg Extension (<i>~<b>20 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Barbell Squat (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Hack Squat (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Romanian Deadlift (<i>~<b>10 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="3">Seated Leg Curl (<i>~<b>20 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Thigh Abductor (<i>~<b>12 reps</b></i>)</label></li>
+			</ul>
+
+		</div>
+
+		<div id="tabs-6">
+            <input type="text" class="datepicker">
+
+			<ul class="workouts">
+				<li class="workout"><label><input type="checkbox" duration="50">Run (outside or on a treadmill) - (<i>~<b>30</b>-<b>50</b>mins</i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Barbell Bench Press, medium grip (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Incline Dumbbell Press (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Dumbbell Bench Press (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Flat Bench Cable Flyes (<i>~<b>15 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Incline Hammer Curls (<i>~<b>12 reps</b></i>)</label></li>
+				<li class="workout"><label><input type="checkbox" sets="4">Dips, Chest Version x 10-12 reps</label></li>
+			</ul>
+
+		</div>
+
+		<div id="tabs-7">
+			<ul class="workouts">
+				<li><label><input type="checkbox">Rest Day</label></li>
+			</ul>
+		</div>
+	</div>
+
+    <style media="screen">
+        .workout > * {
+            display: inline-block;
+        }
+        .workout > select {
+            margin-left: 5px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function copy(t) {
+            $('<input>').val('t').hide().insertAfter($('body').children().last()).each(function() {
+                this.select();
+                this.setSelectionRange(0, 99999);
+                document.execCommand("copy");
+
+                $(this).remove();
+            });
+        }
+
+        $('.workouts').each(function(workouts) {
+            let $workouts = $(this);
+
+            $workouts.find('.workout').each(function(workout) {
+                let $workout = $(this);
+                let $input = $workout.find('input');
+
+                if($input.attr('sets')) {
+                    $workout.append([
+        				$('<select>').attr('id', `${ $workouts.parent().attr('id') }-workout-${ $workout.index() }`).append(Array.from(Array(parseInt($input.attr('sets')) + 1).keys(), key => {
+                            let text = `${ key } sets`;
+
+        					return $('<option>').text(text);
+        				}))
+        			]);
+
+                } else if($input.attr('duration')) {
+                    $workout.append([
+        				$('<select>').attr('id', `${ $workouts.parent().attr('id') }-workout-${ $workout.index() }`).append(Array.from(Array(parseInt($input.attr('duration')) + 1).keys(), key => {
+                            let value = `${ key } minutes`;
+        					let opt = $('<option>').attr('value', value).text(value);
+
+        					return opt;
+        				}))
+        			]);
+
+
+                }
+
+            });
+
+            $workouts.append([
+                $('<button>').attr('type', 'button').text('Copy Workout').click(function() {
+                    let results = $workouts.find('input').map(function() {
+
+                        let text = $(this).parent().text();
+                        let state = ($(this).prop('checked')) ? 'COMPLETED' : 'INCOMPLETE';
+                        let amount = $(this).parents().eq(1).find('select').val();
+
+                        return `${ text } [${ state }] ${ (state == "COMPLETED" || amount > 0) ? '(' + amount + ')' : '' }`
+                    });
+
+                    console.log(results);
+                })
+            ])
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
