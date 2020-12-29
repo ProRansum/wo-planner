@@ -288,7 +288,7 @@
                 let $input = $workout.find('input');
 
                 $input.change(function() {
-                    $(this).parents().eq(1).attr('state', $(this).prop('checked') ? 'completed' : null);
+                    $(this).parents().eq(1).attr('state', $(this).prop('checked') ? 'completed' : (parseInt($(this).parents().eq(1).find('select').val().match(/[0-9]{1,}/g).reduce(_=>_)) > 0) ? 'in-progress' : null);
                 });
 
                 if($input.attr('sets')) {
@@ -317,10 +317,10 @@
                     let results = $workouts.find('input').map(function() {
 
                         let text = $(this).parent().text();
-                        let state = ($(this).prop('checked')) ? '[✓]' : '';
+                        let state = ($(this).prop('checked')) ? '[✓]' : ($(this).parents().eq(1).attr('state') == "in-progress") ? '[⟳]' : '';
                         let amount = $(this).parents().eq(1).find('select').val();
 
-                        return `${ text } ${ state } ${ (state == "[✓]" || amount > 0) ? '(' + amount + ')' : '' }`
+                        return `${ text } ${ state }${ (state.match(/\✓|\⟳/g) || parseInt(amount.match(/[0-9]{1,}/g).reduce(_=>_)) > 0) ? ' (' + amount + ')' : '' }`
                     });
 
                     let t = `Date: ${ $(this).parent().prevAll('.datepicker').val() }\n${ results.get().join('\n') }`;
