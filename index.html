@@ -158,11 +158,59 @@
 	</div>
 
     <style media="screen">
+        .datepicker { padding: unset; }
+        .workouts {
+            width: 100%;
+            padding: unset;
+        }
+        .workouts li {
+            list-style-type: none;
+            margin-bottom: 5px;
+        }
         .workout > * {
             display: inline-block;
         }
         .workout > select {
             margin-left: 5px;
+        }
+        .workout[state="completed"] {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .workout[state="in-progress"] {
+            color: #856404;
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+        }
+
+        @media (max-width: 1000px) {
+            .ui-tabs-tab { width: 100%; }
+            .ui-tabs .ui-tabs-nav { padding-bottom: .2em; }
+
+            .datepicker, .copy-results {
+                width: 100%;
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .datepicker, .copy-results,
+            .workouts > .workout label,
+            .workouts > .workout select {
+                display: block;
+                width: 100%;
+            }
+            .workout {
+                padding-bottom: 5px;
+            }
+            .workouts > .workout select {
+                /*text-align: right;*/
+                /*margin: auto;*/
+                margin: auto;
+                margin-top: .1em;
+                padding: 0.2em 0;
+            }
         }
     </style>
 
@@ -184,6 +232,10 @@
                 let $workout = $(this);
                 let $input = $workout.find('input');
 
+                $input.change(function() {
+                    $(this).parents().eq(1).attr('state', $(this).prop('checked') ? 'completed' : null);
+                });
+
                 if($input.attr('sets')) {
                     $workout.append([
         				$('<select>').attr('id', `${ $workouts.parent().attr('id') }-workout-${ $workout.index() }`).append(Array.from(Array(parseInt($input.attr('sets')) + 1).keys(), key => {
@@ -202,14 +254,11 @@
         					return opt;
         				}))
         			]);
-
-
                 }
-
             });
 
             $workouts.append([
-                $('<button>').attr('type', 'button').text('Copy Workout').click(function() {
+                $('<button>').attr('type', 'button').addClass('copy-results').text('Copy Workout').click(function() {
                     let results = $workouts.find('input').map(function() {
 
                         let text = $(this).parent().text();
@@ -221,9 +270,19 @@
 
                     copy(results.get().join('\n'));
                 })
-            ])
+            ]);
 
+            $workouts.find('select').change(function() {
+                let holder = $(this).parents().eq(0),
+                    input = holder.find('input[type="checkbox"]'),
+                    state = holder.attr('state'),
+                    value = $(this).val();
+
+                holder.attr('state', input.prop('checked') ? 'completed' : (value.toString().match(/^([0]|null|undefined)/gi)) ? null : 'in-progress');
+
+            })
         });
+
     </script>
 </body>
 
