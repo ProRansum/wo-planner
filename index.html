@@ -187,6 +187,16 @@
             border-color: #ffeeba;
         }
 
+        pre {
+            width: 100% !important;
+            margin: 1em 0 1em 0 !important;
+            padding: 1em 0;
+            position: relative !important;
+            overflow: auto !important;
+            font-size: 1em !important;
+            background: #eee;
+        }
+
         @media (max-width: 1000px) {
             .ui-tabs-tab { width: 100%; }
             .ui-tabs .ui-tabs-nav { padding-bottom: .2em; }
@@ -228,6 +238,27 @@
             $temp.remove();
         }
 
+        function copied_dialog(t) {
+            $('<div>').addClass('dialog').appendTo($('body')).append([
+                $('<p>').text('Results Copied to Clipboard.'),
+                $('<br>'),
+                $('<pre>').append([
+                    $('<code>').text(t)
+                ])
+            ]).dialog({
+            	dialogClass: "no-close",
+                title: "Results Copied!",
+                width: '80%',
+                height: '95%',
+            	buttons: [{
+            		text: "OK",
+            		click: function() {
+            			$(this).dialog("close").remove();
+            		}
+            	}]
+            });
+        }
+
         $('.workouts').each(function(workouts) {
             let $workouts = $(this);
 
@@ -261,17 +292,21 @@
             });
 
             $workouts.append([
-                $('<button>').attr('type', 'button').addClass('copy-results').text('Copy Workout').click(function() {
+                $('<button>').attr('type', 'button').addClass('copy-results').text('Copy Results').click(function() {
                     let results = $workouts.find('input').map(function() {
 
                         let text = $(this).parent().text();
-                        let state = ($(this).prop('checked')) ? 'COMPLETED' : 'INCOMPLETE';
+                        let state = ($(this).prop('checked')) ? '[✓]' : '';
                         let amount = $(this).parents().eq(1).find('select').val();
 
-                        return `${ text } [${ state }] ${ (state == "COMPLETED" || amount > 0) ? '(' + amount + ')' : '' }`
+                        return `${ text } ${ state } ${ (state == "[✓]" || amount > 0) ? '(' + amount + ')' : '' }`
                     });
 
-                    copy(`Date: ${ $(this).parent().prevAll('.datepicker').val() }\n${ results.get().join('\n') }`);
+                    let t = `Date: ${ $(this).parent().prevAll('.datepicker').val() }\n${ results.get().join('\n') }`;
+
+                    copy(t);
+                    copied_dialog(t);
+
                 })
             ]);
 
@@ -285,6 +320,8 @@
 
             })
         });
+
+
 
     </script>
 </body>
